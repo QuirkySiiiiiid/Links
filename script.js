@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         perturbance: 0.02,
         interactive: true,
         crossOrigin: '',
-        imageUrl: 'images/image.png'  // Replace with your image URL
+        imageUrl: 'images/image.png'
     });
 
     // Apply the dark overlay to the ripple canvas
@@ -158,8 +158,12 @@ document.addEventListener("DOMContentLoaded", () => {
             link.style.transform = "scale(0.95)";
             setTimeout(() => link.style.transform = "", 200);
             
-            // Navigate immediately without showing message
-            window.location.href = link.href;
+            // Check if link should open in new tab
+            if (link.target === '_blank') {
+                window.open(link.href, '_blank');
+            } else {
+                window.location.href = link.href;
+            }
         });
     });
 
@@ -303,8 +307,12 @@ document.addEventListener("DOMContentLoaded", () => {
             mainFab.style.background = 'var(--accent-color)';
             isFabOpen = false;
 
-            // Navigate immediately without showing message
-            window.location.href = option.href;
+            // Check if option should open in new tab
+            if (option.target === '_blank') {
+                window.open(option.href, '_blank');
+            } else {
+                window.location.href = option.href;
+            }
         });
     });
 
