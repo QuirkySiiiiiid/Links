@@ -1,4 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Visitor Counter Logic
+    const updateVisitorCount = () => {
+        let visitors = localStorage.getItem('totalVisitors');
+        if (!visitors) {
+            visitors = 1;
+        } else {
+            visitors = parseInt(visitors) + 1;
+        }
+        localStorage.setItem('totalVisitors', visitors);
+        document.getElementById('visitorCount').textContent = visitors;
+    };
+
+    // Check if this is a new session
+    if (!sessionStorage.getItem('counted')) {
+        updateVisitorCount();
+        sessionStorage.setItem('counted', 'true');
+    } else {
+        // Just display the current count without incrementing
+        const currentCount = localStorage.getItem('totalVisitors') || 0;
+        document.getElementById('visitorCount').textContent = currentCount;
+    }
+
     // Initialize ripple effect with subtle waves and background image
     $('body').ripples({
         resolution: 512,
@@ -6,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         perturbance: 0.02,
         interactive: true,
         crossOrigin: '',
-        imageUrl: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=80'
+        imageUrl: 'image.png'
     });
 
     // Apply the dark overlay to the ripple canvas
