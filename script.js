@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         perturbance: 0.02,
         interactive: true,
         crossOrigin: '',
-        imageUrl: 'image.png'
+        imageUrl: 'images/image.png'
     });
 
     // Apply the dark overlay to the ripple canvas
