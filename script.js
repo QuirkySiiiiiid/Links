@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         perturbance: 0.02,
         interactive: true,
         crossOrigin: '',
-        imageUrl: 'images/image.png'
+        imageUrl: 'images/image.png'  // Replace with your image URL
     });
 
     // Apply the dark overlay to the ripple canvas
@@ -158,11 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
             link.style.transform = "scale(0.95)";
             setTimeout(() => link.style.transform = "", 200);
             
-            // Show success message and navigate
-            showSuccessMessage("Opening link...");
-            setTimeout(() => {
-                window.location.href = link.href;
-            }, 1000);
+            // Navigate immediately without showing message
+            window.location.href = link.href;
         });
     });
 
@@ -175,22 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
             profilePic.style.transform = `rotate(${rotationDegree}deg)`;
         }, 1000);
     });
-
-    function showSuccessMessage(message) {
-        const successDiv = document.createElement('div');
-        successDiv.className = 'success-animation';
-        successDiv.textContent = message;
-        document.body.appendChild(successDiv);
-
-        requestAnimationFrame(() => {
-            successDiv.style.transform = 'translateX(0)';
-        });
-
-        setTimeout(() => {
-            successDiv.style.transform = 'translateX(200%)';
-            setTimeout(() => successDiv.remove(), 400);
-        }, 2000);
-    }
 
     // Hamburger Menu
     const menuBtn = document.querySelector('.menu-btn');
@@ -316,20 +297,14 @@ document.addEventListener("DOMContentLoaded", () => {
             e.stopPropagation();  // Prevent event bubbling
             playSound(clickSound);
             
-            // Show success message based on the button clicked
-            const action = option.title;
-            showSuccessMessage(`Opening ${action}...`);
-            
             // Close the FAB menu
             fabContainer.classList.remove('active');
             mainFab.style.transform = '';
             mainFab.style.background = 'var(--accent-color)';
             isFabOpen = false;
 
-            // Navigate after a short delay
-            setTimeout(() => {
-                window.location.href = option.href;
-            }, 500);
+            // Navigate immediately without showing message
+            window.location.href = option.href;
         });
     });
 
